@@ -21,3 +21,12 @@ const placeholder = function () {
 
 };
 placeholder(word); //8 ● should apear on the meassage for the amount of letters in word variable (magnolia)
+
+// Event Handler for Button(Guess)
+button.addEventListener("click", function (e){
+    e.preventDefault();
+    const guess = textBox.value;
+    console.log(guess);
+    textBox.value = "";
+
+})
