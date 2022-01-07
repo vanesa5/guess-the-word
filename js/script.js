@@ -39,10 +39,12 @@ button.addEventListener("click", function (e){
 
     const goodGuess = verifyPlayersInput(guess);
     console.log(goodGuess);
+
+    makeGuess(guess);
     
 })
 
-//Checking Players Input Function (verifiedInput)
+//Checks Players Input Function (verifiedInput)
 const verifyPlayersInput = function (input) {
     const acceptedLetter = /[a-zA-Z]/;
 
@@ -63,3 +65,16 @@ const verifyPlayersInput = function (input) {
 // + Emptied text of Elem. (message.innerText = "";)
 
 // Added a Global Variable for Players Guesses (const guessedLetters = [])
+
+//Capture Input Function
+const makeGuess = function (guess) {
+    guess = guess.toUpperCase(); 
+    if (guessedLetters.includes(guess)) {
+        message.innerText = "You have already guessed that letter. Try again."
+    } else {
+        guessedLetters.push(guess);
+        console.log(guessedLetters); //consoles out the input letters into an array []
+    }
+    // Plays input is returning a letter, therefor makeGuess will pass "guess" in Button Event Handler
+};
+
