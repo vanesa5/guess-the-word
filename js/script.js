@@ -9,6 +9,8 @@ const message = document.querySelector(".message");
 const playAgainButton = document.querySelector(".play-again hide");
 //Test word
 const word = "magnolia"
+//guessedLetters will contain all letters that a player guesses.
+const guessedLetters = [];
 
 // Word Placeholder Function 
 const placeholder = function () {
@@ -27,29 +29,37 @@ placeholder(word); //8 ● should apear on the meassage for the amount of letter
 // Event Handler for Button(Guess)
 button.addEventListener("click", function (e){
     e.preventDefault();
-    const guess = textBox.value;
+    message.innerText = "";
+    
+    const guess = textBox.value; // input value
     console.log(guess);
     textBox.value = "";
+
+    //verifyPlayersInput(guess);
+
+    const goodGuess = verifyPlayersInput(guess);
+    console.log(goodGuess);
+    
 })
 
 //Checking Players Input Function (verifiedInput)
-const verifyInput = function (input) {
+const verifyPlayersInput = function (input) {
     const acceptedLetter = /[a-zA-Z]/;
 
     // If there was no letter input
     if (input.length === 0){
-        message.innerText = "Please enter a Letter(A-Z)."
+        message.innerText = "Please enter a Letter(A-Z).";
     } else if (input.length > 1) {
         message.innerText = "Please, only enter one Letter(A-Z).";
-    } else if (!input.length.match(acceptedLetter)) {
+    } else if (!input.match(acceptedLetter)) {
         message.innerText = "Synbols/Numbers are not accepted. Please enter a Letter(A-Z).";
     } else {
         return input; //If a input was a letter A-Z
     }
 };
 
-// // Added New Variable to top, by word variable (guessedLetters)
-// //      const guessedLetters = []
+// Validate Input in the Button Event Handler
+// + Called verityPlayersInput(guess)
+// + Emptied text of Elem. (message.innerText = "";)
 
-// //Capture Input Function
-// //const makesGuess = function (acceptedLetter)
+// Added a Global Variable for Players Guesses (const guessedLetters = [])
