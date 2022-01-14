@@ -32,7 +32,7 @@ button.addEventListener("click", function (e){
     message.innerText = "";
     
     const guess = textBox.value; // input value
-    console.log(guess);
+    //console.log(guess);
     textBox.value = "";
 
     //verifyPlayersInput(guess);
@@ -40,7 +40,7 @@ button.addEventListener("click", function (e){
     const goodGuess = verifyPlayersInput(guess);
     console.log(goodGuess);
 
-    makeGuess(guess);
+    makeGuess(guess); //consoles out the input letters into an array []
     
 })
 
@@ -73,8 +73,19 @@ const makeGuess = function (guess) {
         message.innerText = "You have already guessed that letter. Try again."
     } else {
         guessedLetters.push(guess);
-        console.log(guessedLetters); //consoles out the input letters into an array []
+        console.log(guessedLetters); 
+        showGuessedLetter()
     }
     // Plays input is returning a letter, therefor makeGuess will pass "guess" in Button Event Handler
 };
 
+//Show Guessed Letters Function
+const showGuessedLetter = function () {
+    unorderedList.innerText = "";
+    for(const letter of guessedLetters) {
+        const li = document.createElement("li")
+        li.innerHTML = letter
+        unorderedList.append(li);
+    }
+    //call this function inside makeGuess() in else statement
+};
