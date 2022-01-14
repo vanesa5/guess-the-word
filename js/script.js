@@ -75,7 +75,7 @@ const makeGuess = function (guess) {
         guessedLetters.push(guess);
         console.log(guessedLetters); 
         showGuessedLetter();
-        updateWordInProgress();
+        updateWordInProgress(guessedLetters);
     }
     // Plays input is returning a letter, therefor makeGuess will pass "guess" in Button Event Handler
 };
