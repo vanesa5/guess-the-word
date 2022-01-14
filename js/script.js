@@ -11,6 +11,10 @@ const playAgainButton = document.querySelector(".play-again hide");
 const word = "magnolia";
 //guessedLetters will contain all letters that a player guesses.
 const guessedLetters = [];
+//Limit Guesses/Trys
+const remainingTries = 8;
+
+//=========================================
 
 // Word Placeholder Function 
 const placeholder = function () {
@@ -76,6 +80,7 @@ const makeGuess = function (guess) {
         console.log(guessedLetters); 
         showGuessedLetter();
         updateWordInProgress(guessedLetters);
+        
     }
     // Plays input is returning a letter, therefor makeGuess will pass "guess" in Button Event Handler
 };
@@ -90,6 +95,7 @@ const showGuessedLetter = function () {
     }
     //call this function inside makeGuess() in else statement
 };
+
 
 // Update Word in Progress Function
 const updateWordInProgress = function (guessedLetters) {
@@ -111,10 +117,26 @@ const updateWordInProgress = function (guessedLetters) {
 
 };
 
+// Guesses Remaining Function
+const guessesRemaining = function (guess) {
+    const upperWord = word.toUpperCase();
+    if (!upperWord.includes(guess)) {
+        message.innerText = `The Word does not contain ${guess}.`
+        remainingTries -= 1; 
+    } else {
+        message.innerText = ` Good guess! The word has letter ${guess}.`
+    }
+    if (remainingTries === 0) {
+        message.innerText = `Game Over. The word was ${word}.`
+    }
+};
+
 // Winner Function
 const winner = function () {
     if (word.toUpperCase() === wordInProgress.innerText) {
        message.classList.add("Win");
        message.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
+       
     }
 }
+
