@@ -106,5 +106,15 @@ const updateWordInProgress = function (guessedLetters) {
             }
         }
         wordInProgress.innerText = revealLetter.join("");
-        //call this function in makeGuess() in else statement 
+        // If guessed Correclty, Winner Fuction with reveal win message
+        winner();
+
 };
+
+// Winner Function
+const winner = function () {
+    if (word.toUpperCase() === wordInProgress.innerText) {
+       message.classList.add("Win");
+       message.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
+    }
+}
