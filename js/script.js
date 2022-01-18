@@ -8,13 +8,33 @@ const totalGuesses = document.querySelector(".remaining span");
 const message = document.querySelector(".message");
 const playAgainButton = document.querySelector(".play-again hide");
 //Test word
-const word = "magnolia";
+let word = "magnolia"; //let allows you to reuse the variable word in Async Function.
 //guessedLetters will contain all letters that a player guesses.
 const guessedLetters = [];
 //Limit Guesses/Trys
 const remainingTries = 8;
 
 //=========================================
+
+// Async Function getWord()
+const getWord = async function () {
+    const res = await fetch("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
+    const words = await res.text() //.text() bc its a text file and not a json file.
+    console.log(words);
+    const wordArray = words.split("\n");
+    const randomIndex = Math.floor(Math.random() * wordArray.length);
+
+    word = wordArray[randomIndex].trim(); //trim() will get rig of all the extra white space around each word
+
+    placeholder(word);
+
+};
+getWord(); // displays a long list of words on the consule in alph. order 
+
+
+
+
+
 
 // Word Placeholder Function 
 const placeholder = function () {
@@ -28,7 +48,7 @@ const placeholder = function () {
     wordInProgress.innerText = placeholderForLetters.join("");
 
 };
-placeholder(word); //8 ● should apear on the meassage for the amount of letters in word variable (magnolia)
+//placeholder(word); //8 ● should apear on the meassage for the amount of letters in word variable (magnolia)
 
 // Event Handler for Button(Guess)
 button.addEventListener("click", function (e){
