@@ -12,7 +12,7 @@ let word = "magnolia"; //let allows you to reuse the variable word in Async Func
 //guessedLetters will contain all letters that a player guesses.
 const guessedLetters = [];
 //Limit Guesses/Trys
-const remainingTries = 8;
+let remainingTries = 8;
 
 //=========================================
 
@@ -165,12 +165,13 @@ const guessesRemaining = function (guess) {
     } else {
         message.innerText = ` Good guess! The word has letter ${guess}.`
     } 
+
     if (remainingTries === 0) {
-        message.innerHTML = `Game Over. The word was <span class="highlight">${word}</span>.`
+        totalGuesses.innerHTML = `Game Over. The word was <span class="highlight">${word}</span>.`
     } else if (remainingTries === 1){
-        message.innerText = `${remainingTries} guess`
+        totalGuesses.innerText = `${remainingTries} guess`
     } else {
-        message.innerText = `${remainingTries} guesses`
+        totalGuesses.innerText = `${remainingTries} guesses`
     }
 };
 
