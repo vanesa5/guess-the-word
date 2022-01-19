@@ -50,6 +50,8 @@ const placeholder = function () {
 };
 //placeholder(word); //8 ● should apear on the meassage for the amount of letters in word variable (magnolia)
 
+// BUTTONS UNDER THIS LINE-----------------
+//GUESS BUTTON
 // Event Handler for Button(Guess)
 button.addEventListener("click", function (e){
     e.preventDefault();
@@ -66,7 +68,19 @@ button.addEventListener("click", function (e){
     if (goodGuess){
     makeGuess(guess); //consoles out the input letters into an array []
     }
+    
 });
+
+//PLAY AGAIN BUTTON 
+// playAgainButton.addEventListener("click", function (){
+//     playAgainButton.classList.
+
+// });
+
+
+
+
+///LAST LINE OF BUTTON SECTION--------------
 
 //Checks Players Input Function (verifiedInput)
 const verifyPlayersInput = function (input) {
@@ -98,8 +112,13 @@ const makeGuess = function (guess) {
     } else {
         guessedLetters.push(guess);
         console.log(guessedLetters); 
+        guessesRemaining(guess);
+        
         showGuessedLetter();
+        
         updateWordInProgress(guessedLetters);
+        
+        
         
     }
     // Plays input is returning a letter, therefor makeGuess will pass "guess" in Button Event Handler
@@ -145,9 +164,13 @@ const guessesRemaining = function (guess) {
         remainingTries -= 1; 
     } else {
         message.innerText = ` Good guess! The word has letter ${guess}.`
-    }
+    } 
     if (remainingTries === 0) {
-        message.innerText = `Game Over. The word was ${word}.`
+        message.innerHTML = `Game Over. The word was <span class="highlight">${word}</span>.`
+    } else if (remainingTries === 1){
+        message.innerText = `${remainingTries} guess`
+    } else {
+        message.innerText = `${remainingTries} guesses`
     }
 };
 
@@ -160,3 +183,15 @@ const winner = function () {
     }
 }
 
+// //Start Over Function
+// const startOver = function (){
+
+//     message.classList.add("hide");
+//     unorderedList.classList.add("hide");
+    
+//     document.getElementById('play-again hide').style.display='';
+//     document.getElementById('guess').style.display='none';
+    
+
+// };
+// // startOver();
