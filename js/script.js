@@ -6,7 +6,7 @@ const wordInProgress = document.querySelector(".word-in-progress");
 const remainingGuesses = document.querySelector(".remaining");
 const totalGuesses = document.querySelector(".remaining span");
 const message = document.querySelector(".message");
-const playAgainButton = document.querySelector(".play-again hide");
+const playAgainButton = document.querySelector(".play-again");
 //Test word
 let word = "magnolia"; //let allows you to reuse the variable word in Async Function.
 //guessedLetters will contain all letters that a player guesses.
@@ -117,6 +117,8 @@ const makeGuess = function (guess) {
         showGuessedLetter();
         
         updateWordInProgress(guessedLetters);
+
+        
         
         
         
@@ -160,18 +162,19 @@ const updateWordInProgress = function (guessedLetters) {
 const guessesRemaining = function (guess) {
     const upperWord = word.toUpperCase();
     if (!upperWord.includes(guess)) {
-        message.innerText = `The Word does not contain ${guess}.`
+        message.innerText = `The Word does not contain ${guess}.`;
         remainingTries -= 1; 
     } else {
-        message.innerText = ` Good guess! The word has letter ${guess}.`
+        message.innerText = ` Good guess! The word has letter ${guess}.`;
     } 
 
     if (remainingTries === 0) {
-        totalGuesses.innerHTML = `Game Over. The word was <span class="highlight">${word}</span>.`
+        totalGuesses.innerHTML = `Game Over. The word was <span class="highlight">${word}</span>.`;
+        startOver(); // Play Agian Button will dispaly if plays runs out of guesses
     } else if (remainingTries === 1){
-        totalGuesses.innerText = `${remainingTries} guess`
+        totalGuesses.innerText = `${remainingTries} guess`;
     } else {
-        totalGuesses.innerText = `${remainingTries} guesses`
+        totalGuesses.innerText = `${remainingTries} guesses`;
     }
 };
 
@@ -181,18 +184,20 @@ const winner = function () {
        message.classList.add("Win");
        message.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
        
+       startOver(); // Play agin button will display if player wins
     }
 }
 
 // //Start Over Function
-// const startOver = function (){
+const startOver = function () {
 
-//     message.classList.add("hide");
-//     unorderedList.classList.add("hide");
-    
-//     document.getElementById('play-again hide').style.display='';
-//     document.getElementById('guess').style.display='none';
+    remainingGuesses.classList.add("hide");
+    unorderedList.classList.add("hide");
+    button.classList.add("hide");
+    playAgainButton.classList.remove("hide");
+    // document.getElementById('play-again hide').style.display='';
+    // document.getElementById('guess').style.display='none';
     
 
-// };
-// // startOver();
+};
+// startOver();
