@@ -87,7 +87,7 @@ playAgainButton.addEventListener("click", function (){
     unorderedList.classList.remove("hide");
     button.classList.remove("hide");
     playAgainButton.classList.add("hide");
-
+    
     //calling functions below this line
     getWord();
 });
@@ -197,10 +197,11 @@ const winner = function () {
     if (word.toUpperCase() === wordInProgress.innerText) {
        message.classList.add("Win");
        message.innerHTML = `<p class="highlight">You guessed the correct word! Congrats!</p>`;
-       
+    
        startOver(); // Play agin button will display if player wins
     }
-}
+    
+};
 
 // //Start Over Function
 const startOver = function () {
@@ -209,6 +210,7 @@ const startOver = function () {
     unorderedList.classList.add("hide");
     button.classList.add("hide");
     playAgainButton.classList.remove("hide");
+    textBox.classList.disable("input");
     // document.getElementById('play-again').style.display='';
     // document.getElementById('guess').style.display='none';
     
