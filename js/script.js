@@ -183,7 +183,7 @@ const guessesRemaining = function (guess) {
     } 
 
     if (remainingTries === 0) {
-        totalGuesses.innerHTML = `Game Over. The word was <span class="highlight">${word}</span>.`;
+        message.innerHTML = `Game Over. The word was <span class="highlight">${word}</span>.`;
         startOver(); // Play Agian Button will dispaly if plays runs out of guesses
     } else if (remainingTries === 1){
         totalGuesses.innerText = `${remainingTries} guess`;
