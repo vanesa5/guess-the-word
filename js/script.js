@@ -10,7 +10,7 @@ const playAgainButton = document.querySelector(".play-again");
 //Test word
 let word = "magnolia"; //let allows you to reuse the variable word in Async Function.
 //guessedLetters will contain all letters that a player guesses.
-const guessedLetters = [];
+let guessedLetters = [];
 //Limit Guesses/Trys
 let remainingTries = 8;
 
@@ -51,6 +51,7 @@ const placeholder = function () {
 //placeholder(word); //8 ● should apear on the meassage for the amount of letters in word variable (magnolia)
 
 // BUTTONS UNDER THIS LINE-----------------
+
 //GUESS BUTTON
 // Event Handler for Button(Guess)
 button.addEventListener("click", function (e){
@@ -72,15 +73,28 @@ button.addEventListener("click", function (e){
 });
 
 //PLAY AGAIN BUTTON 
-// playAgainButton.addEventListener("click", function (){
-//     playAgainButton.classList.
+playAgainButton.addEventListener("click", function (){
+    message.classList.remove("win");
+    message.innerText = "";
+    unorderedList.innerHTML = "";
+    remainingTries = 8;
+    guessedLetters = [];
+    totalGuesses.innerText = `${remainingTries} guesses`;
+    wordInProgress.innerHTML = "";
 
-// });
+    //guess button info below
+    remainingGuesses.classList.remove("hide");
+    unorderedList.classList.remove("hide");
+    button.classList.remove("hide");
+    playAgainButton.classList.add("hide");
 
-
-
+    //calling functions below this line
+    getWord();
+});
 
 ///LAST LINE OF BUTTON SECTION--------------
+
+
 
 //Checks Players Input Function (verifiedInput)
 const verifyPlayersInput = function (input) {
@@ -182,7 +196,7 @@ const guessesRemaining = function (guess) {
 const winner = function () {
     if (word.toUpperCase() === wordInProgress.innerText) {
        message.classList.add("Win");
-       message.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
+       message.innerHTML = `<p class="highlight">You guessed the correct word! Congrats!</p>`;
        
        startOver(); // Play agin button will display if player wins
     }
@@ -195,7 +209,7 @@ const startOver = function () {
     unorderedList.classList.add("hide");
     button.classList.add("hide");
     playAgainButton.classList.remove("hide");
-    // document.getElementById('play-again hide').style.display='';
+    // document.getElementById('play-again').style.display='';
     // document.getElementById('guess').style.display='none';
     
 
