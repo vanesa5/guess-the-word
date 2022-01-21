@@ -13,7 +13,7 @@ let word = "magnolia"; //let allows you to reuse the variable word in Async Func
 let guessedLetters = [];
 //Limit Guesses/Trys
 let remainingTries = 8;
-
+document.getElementById("inp").removeAttribute("disabled");
 //=========================================
 
 // Async Function getWord()
@@ -61,7 +61,7 @@ button.addEventListener("click", function (e){
     const guess = textBox.value; // input value
     //console.log(guess);
     textBox.value = "";
-
+    
     //verifyPlayersInput(guess);
 
     const goodGuess = verifyPlayersInput(guess);
@@ -88,6 +88,7 @@ playAgainButton.addEventListener("click", function (){
     button.classList.remove("hide");
     playAgainButton.classList.add("hide");
     
+    document.getElementById("inp").removeAttribute("disabled");
     //calling functions below this line
     getWord();
 });
@@ -98,6 +99,7 @@ playAgainButton.addEventListener("click", function (){
 
 //Checks Players Input Function (verifiedInput)
 const verifyPlayersInput = function (input) {
+    
     const acceptedLetter = /[a-zA-Z]/;
 
     // If there was no letter input
@@ -110,6 +112,7 @@ const verifyPlayersInput = function (input) {
     } else {
         return input; //If a input was a letter A-Z
     }
+    
 };
 
 // Validate Input in the Button Event Handler
@@ -184,6 +187,8 @@ const guessesRemaining = function (guess) {
 
     if (remainingTries === 0) {
         message.innerHTML = `Game Over. The word was <span class="highlight">${word}</span>.`;
+        textBox.setAttribute("disabled", "");
+
         startOver(); // Play Agian Button will dispaly if plays runs out of guesses
     } else if (remainingTries === 1){
         totalGuesses.innerText = `${remainingTries} guess`;
@@ -197,7 +202,7 @@ const winner = function () {
     if (word.toUpperCase() === wordInProgress.innerText) {
        message.classList.add("Win");
        message.innerHTML = `<p class="highlight">You guessed the correct word! Congrats!</p>`;
-    
+        textBox.setAttribute("disabled", "");
        startOver(); // Play agin button will display if player wins
     }
     
@@ -210,7 +215,7 @@ const startOver = function () {
     unorderedList.classList.add("hide");
     button.classList.add("hide");
     playAgainButton.classList.remove("hide");
-    textBox.classList.disable("input");
+    
     // document.getElementById('play-again').style.display='';
     // document.getElementById('guess').style.display='none';
     
